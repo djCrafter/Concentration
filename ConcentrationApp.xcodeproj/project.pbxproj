@@ -12,6 +12,8 @@
 		DF749E24224CF25900558274 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DF749E22224CF25900558274 /* Main.storyboard */; };
 		DF749E26224CF25C00558274 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DF749E25224CF25C00558274 /* Assets.xcassets */; };
 		DF749E29224CF25C00558274 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DF749E27224CF25C00558274 /* LaunchScreen.storyboard */; };
+		DF749E32224CF53600558274 /* Concentration.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF749E31224CF53600558274 /* Concentration.swift */; };
+		DF749E34224CF57800558274 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF749E33224CF57800558274 /* Card.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +24,8 @@
 		DF749E25224CF25C00558274 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DF749E28224CF25C00558274 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DF749E2A224CF25C00558274 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DF749E31224CF53600558274 /* Concentration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Concentration.swift; sourceTree = "<group>"; };
+		DF749E33224CF57800558274 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,14 +58,24 @@
 		DF749E1D224CF25900558274 /* ConcentrationApp */ = {
 			isa = PBXGroup;
 			children = (
-				DF749E1E224CF25900558274 /* AppDelegate.swift */,
+				DF749E30224CF34B00558274 /* Supporting FIles */,
 				DF749E20224CF25900558274 /* ViewController.swift */,
+				DF749E31224CF53600558274 /* Concentration.swift */,
 				DF749E22224CF25900558274 /* Main.storyboard */,
-				DF749E25224CF25C00558274 /* Assets.xcassets */,
-				DF749E27224CF25C00558274 /* LaunchScreen.storyboard */,
 				DF749E2A224CF25C00558274 /* Info.plist */,
+				DF749E33224CF57800558274 /* Card.swift */,
 			);
 			path = ConcentrationApp;
+			sourceTree = "<group>";
+		};
+		DF749E30224CF34B00558274 /* Supporting FIles */ = {
+			isa = PBXGroup;
+			children = (
+				DF749E1E224CF25900558274 /* AppDelegate.swift */,
+				DF749E25224CF25C00558274 /* Assets.xcassets */,
+				DF749E27224CF25C00558274 /* LaunchScreen.storyboard */,
+			);
+			path = "Supporting FIles";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -137,6 +151,8 @@
 			files = (
 				DF749E21224CF25900558274 /* ViewController.swift in Sources */,
 				DF749E1F224CF25900558274 /* AppDelegate.swift in Sources */,
+				DF749E32224CF53600558274 /* Concentration.swift in Sources */,
+				DF749E34224CF57800558274 /* Card.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
