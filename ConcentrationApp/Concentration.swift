@@ -14,14 +14,35 @@ class Concentration
     var flipCount = 0
     var gameOver = false
     var cardInGame = 0
-    var cards = [Card]()
+    private(set) var cards = [Card]()
     
-    var indexOfOneAndOnlyFaceUp: Int?
+  private var indexOfOneAndOnlyFaceUp: Int? {
+        get {
+            var foundIndex: Int?
+            for index in cards.indices {
+                if cards[index].isFaceUp{
+                    if foundIndex == nil {
+                        foundIndex = index
+                    }
+                    else{
+                        return nil
+                    }
+                }
+            }
+            return foundIndex
+        }
+        set {
+            for index in cards.indices {
+                cards[index].isFaceUp = (index == newValue)
+            }
+        }
+    }
     
     
     
     func chooseCard(at index: Int) -> (flips: Int, scores: Int, isGameOver: Bool) {
-        flipCount += 1
+        
+        assert(cards.indices.contains(index), "Concentration.chooseCard(at: \(index)): chosen index not in the cards")
         if !cards[index].isMatched {
             if let matchIndex = indexOfOneAndOnlyFaceUp, matchIndex != index {
                 var flag = true
@@ -41,18 +62,17 @@ class Concentration
                 indexOfOneAndOnlyFaceUp = nil
                 if flag { gameScore -= 1 }
             }
-            else{
-                for flipDownIndex in cards.indices {
-                    cards[flipDownIndex].isFaceUp = false
-                }
-                cards[index].isFaceUp = true
+            else{              
                 indexOfOneAndOnlyFaceUp = index
             }
         }
+        
+        flipCount += 1
         return (flipCount, gameScore, gameOver)
     }
     
     init(numberOfPairsOfCards: Int){
+          assert(numberOfPairsOfCards > 0, "Concentration.init(\(numberOfPairsOfCards)): you must have at least one pair of cards")
         for _ in 1...numberOfPairsOfCards
         {
             let card = Card()
