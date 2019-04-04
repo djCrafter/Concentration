@@ -32,6 +32,8 @@ class ViewController: UIViewController {
     lazy var game = Concentration(numberOfPairsOfCards: (cardButtons.count + 1) / 2)
     
   
+    @IBOutlet weak var flipsScoreStack: UIStackView!
+    
     @IBOutlet weak var gameOverLabel: UILabel!
     
     @IBOutlet weak var flipCountLabel: UILabel!
@@ -40,14 +42,42 @@ class ViewController: UIViewController {
     
     @IBOutlet var cardButtons: [UIButton]!
     
+    @IBOutlet weak var startGameButton: UIButton!
+    
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        if UIDevice.current.orientation.isLandscape {
+              //print("Landscape")
+            
+            flipsScoreStack.axis = NSLayoutConstraint.Axis.horizontal
+            
+            gameOverLabel.font = gameOverLabel.font.withSize(25)
+            
+            startGameButton.titleLabel?.font = startGameButton.titleLabel?.font.withSize(15)
+            
+            flipCountLabel.font = flipCountLabel.font.withSize(35)                                        
+        } else {
+            //print("Portrait")
+            
+             gameOverLabel.font = gameOverLabel.font.withSize(42)
+            
+            flipsScoreStack.axis = NSLayoutConstraint.Axis.vertical
+            
+             startGameButton.titleLabel?.font = startGameButton.titleLabel?.font.withSize(37)
+            
+            flipCountLabel.font = flipCountLabel.font.withSize(40)
+        }
+    }
+    
     
     @IBAction func touchCard(_ sender: UIButton) {
         if let cardNumber = cardButtons.index(of: sender) {
             
             var temp: (flips: Int, scores: Int, isGameOver: Bool) = game.chooseCard(at: cardNumber)
             
-            flipCountLabel.text = "Flips: \(temp.flips)"
-            scoreLabel.text = "Score: \(temp.scores)"
+            flipCountLabel.text = "Flips: \(temp.flips)  "
+            scoreLabel.text = "Score: \(temp.scores)  "
             updateViewFromModel()
             
             if temp.isGameOver {
@@ -66,11 +96,11 @@ class ViewController: UIViewController {
         emojiChoices = randomEmojiTheme(for: Int(arc4random_uniform(UInt32(emojiSets.count))))
         flipCountLabel.text = "Flips: 0"
         scoreLabel.text = "Score: 0"
-        gameOverLabel.text = ""
+        gameOverLabel.textColor = UIColor.black
     }
     
     func winFunc() {
-       gameOverLabel.text = "GAME OVER"
+       gameOverLabel.textColor = UIColor.red
     }
     
     

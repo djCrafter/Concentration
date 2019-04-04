@@ -18,6 +18,8 @@ class Concentration
     
     var indexOfOneAndOnlyFaceUp: Int?
     
+    
+    
     func chooseCard(at index: Int) -> (flips: Int, scores: Int, isGameOver: Bool) {
         flipCount += 1
         if !cards[index].isMatched {
