@@ -77,9 +77,9 @@ class ViewController: UIViewController {
     
     
     @IBAction private func touchCard(_ sender: UIButton) {
-        if let cardNumber = cardButtons.index(of: sender) {
+        if let cardNumber = cardButtons.firstIndex(of: sender) {
             
-            var temp: (flips: Int, scores: Int, isGameOver: Bool) = game.chooseCard(at: cardNumber)
+            let temp: (flips: Int, scores: Int, isGameOver: Bool) = game.chooseCard(at: cardNumber)
             
             flipCountLabel.text = "Flips: \(temp.flips)  "
             scoreLabel.text = "Score: \(temp.scores)  "
