@@ -8,24 +8,18 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ConcentrationViewController: UIViewController {
     
-    let emojiSets = [0 : ["🦇", "😱", "🙀", "😈", "🎃", "👻", "🍭", "🍬", "🍎"],
-                     1 : ["🐏", "🐖", "🐈", "🐇", "🦝", "🦏", "🦔", "🐎", "🐓"],
-                     2 : ["🍏", "🍋", "🍅", "🥭", "🥑", "🍆", "🥔", "🥥", "🍌"],
-                     3 : ["💻", "📱", "🖨", "💿", "☎️", "📺", "🎥", "⌚️", "⏰"],
-                     4 : ["♋️", "♒️", "♍️", "♓️", "♐️", "♏️", "♎️", "♈️", "♌️"],
-                     5 : ["A", "B", "C", "D", "E", "F", "G", "H", "I"]]
-    
-    //    ["", "", "", "", "", "", "", "", ""]
-    
-    private lazy var emojiChoices = randomEmojiTheme(for: emojiSets.count.arc4random)
-    
-    
-    func randomEmojiTheme(for index: Int) -> [String] {
-        return emojiSets[index] ?? ["🦇", "😱", "🙀", "😈", "🎃", "👻", "🍭", "🍬", "🍎"]
+    var theme: [String] = [] {
+        didSet {
+            emojiChoices = theme
+            emoji = [:]
+            updateViewFromModel()
+        }
     }
-
+    
+    private var emojiChoices = ["🦇", "😱", "🙀", "😈", "🎃", "👻", "🍭", "🍬", "🍎"]
+    
     
     
     private lazy var game = Concentration(numberOfPairsOfCards: numberOfPairsOfCards)
@@ -97,8 +91,7 @@ class ViewController: UIViewController {
     
     @IBAction func startNewGame(_ sender: UIButton) {
         game = Concentration(numberOfPairsOfCards: (cardButtons.count + 1) / 2)
-        updateViewFromModel()
-        emojiChoices = randomEmojiTheme(for: Int(arc4random_uniform(UInt32(emojiSets.count))))
+        updateViewFromModel()       
         flipCountLabel.text = "Flips: 0"
         scoreLabel.text = "Score: 0"
         gameOverLabel.textColor = UIColor.black
@@ -110,6 +103,7 @@ class ViewController: UIViewController {
     
     
     private func updateViewFromModel() {
+        if cardButtons != nil {
         for index in cardButtons.indices{
             let button = cardButtons[index]
             let card = game.cards[index]		
@@ -121,6 +115,7 @@ class ViewController: UIViewController {
                 button.setTitle("", for: UIControl.State.normal)
                 button.backgroundColor = card.isMatched ? #colorLiteral(red: 1, green: 1, blue: 1, alpha: 0) : #colorLiteral(red: 1, green: 0.5763723254, blue: 0, alpha: 1)
             }
+        }
         }
     }
     
